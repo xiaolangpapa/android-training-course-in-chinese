@@ -1,20 +1,20 @@
 # 开发辅助服务
 
-> 编写:[K0ST](https://github.com/K0ST) - 原文:
+> 编写:[K0ST](https://github.com/K0ST) - 原文:<http://developer.android.com/training/accessibility/service.html>
 
 本课程将教您：
 
-1. 创建Accessibility Service
+1. 创建可达性服务(Accessibility Service)
 
-2. 配置你的Accessibility Service
+2. 配置可达性服务(Accessibility Service)
 
-3. 响应AccessibilityEvents
+3. 响应可达性事件(AccessibilityEvents)
 
 4. 从View层级中提取更多信息
 
 Accessibility Service是Android系统框架提供给安装在设备上应用的一个可选的导航反馈特性。Accessibility Service 可以替代应用与用户交流反馈，比如将文本转化为语音提示，或是用户的手指悬停在屏幕上一个较重要的区域时的触摸反馈等。本课程将教您如何创建一个Accessibility Service，同时处理来自应用的信息，并将这些信息反馈给用户。
 
-##创建Accessibility Service
+## 创建Accessibility Service
 
 Accessibility Service可以绑定在一个正常的应用中，或者是单独的一个Android项目都可以。创建一个Accessibility Service的步骤与创建普通Service的步骤相似，在你的项目中创建一个继承于[AccessibilityService](http://developer.android.com/reference/android/accessibilityservice/AccessibilityService.html)的类：
 
@@ -54,7 +54,7 @@ public class MyAccessibilityService extends AccessibilityService {
 
 如果你为这个Service创建了一个新项目，且仅仅是一个Service而不准备做成一个应用，那么你就可以移除启动的Activity(一般为MainActivity.java)，同样也记得在manifest中将这个Activity声明移除。
 
-##配置你的Accessibility Service
+## 配置Accessibility Service
 
 设置Accessibility Service的配置变量会告诉系统如何让Service运行与何时运行。你希望响应哪种类型的事件？Service是否对所有的应用有效还是对部分指定包名的应用有效？使用哪些不同类型的反馈？
 
@@ -116,9 +116,9 @@ public void onServiceConnected() {
 </service>
 ```
 
-##响应Accessibility Event
+## 响应Accessibility Event
 
-现在你的Service已经配置好并可以监听Accessibility Event了，来写一些响应这些事件的代码吧！首先就是要重写*onAccessibilityEvent(AccessibilityEvent)*方法，在这个方法中，使用`getEventType()`来确定事件的类型，使用`getContentDescription()`来提产生这个事件的View相关的文本标签。
+现在你的Service已经配置好并可以监听Accessibility Event了，来写一些响应这些事件的代码吧！首先就是要重写*onAccessibilityEvent(AccessibilityEvent)*方法，在这个方法中，使用`getEventType()`来确定事件的类型，使用`getContentDescription()`来提取产生事件的View的相关的文本标签。
 
 ```java
 @Override
@@ -143,13 +143,20 @@ public void onAccessibilityEvent(AccessibilityEvent event) {
 }
 ```
 
-##从View层级中提取更多信息
+## 从View层级中提取更多信息
 
 这一步并不是必要步骤，但是却非常有用。Android 4.0版本中增加了一个新特性，就是能够用AccessibilityService来遍历View层级，并从产生Accessibility 事件的组件与它的父子组件中提取必要的信息。为了实现这个目的，你需要在XML文件中进行如下的配置：
 
+```xml
+android:canRetrieveWindowContent="true"
+```
+
+一旦完成，使用[getSource()](http://developer.android.com/reference/android/view/accessibility/AccessibilityRecord.html#getSource())获取一个[AccessibilityNodeInfo](http://developer.android.com/reference/android/view/accessibility/AccessibilityNodeInfo.html)对象，如果触发事件的窗口是活动窗口，该调用只返回一个对象，如果不是,它将返回null，做出相应的反响。下面的示例是一个代码片段,当它接收到一个事件时,执行以下步骤:
+
+
 1. 立即获取到产生这个事件的Parent
 2. 在这个Parent中寻找文本标签或勾选框
-3. 如果找到，创建一个字符串来反馈给用户，提示内容和是否已勾选。
+3. 如果找到，创建一个文本内容来反馈给用户，提示内容和是否已勾选。
 4. 如果当遍历View的时候某处返回了null值，那么就直接结束这个方法。
 
 ```java

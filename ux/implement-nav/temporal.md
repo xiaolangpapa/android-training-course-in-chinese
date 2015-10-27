@@ -6,7 +6,7 @@
 
 在几乎所有情况下，当用户在应用中进行导航时，系统会保存activity的后退栈。这样当用户点击后退按钮时，系统可以正确地向后导航。但是，有少数几种情况需要手动指定app的后退操作，来提供更好的用户体验。
 
->**Back Navigation Design**
+>**Back Navigation 设计**
 
 >在继续阅读篇文章之前，你应该先在[Navigation](http://developer.android.com/design/patterns/navigation.html) design guide中对后退导航的概念和设计准则有个了解。
 
@@ -34,7 +34,7 @@
 
 例如:
 
-```java
+```xml
 <application ... >
     ...
     <!-- main/home activity (没有父activity) -->
@@ -115,7 +115,7 @@ getSupportFragmentManager().addOnBackStackChangedListener(
 
 ## 为WebView实现向后导航
 
-如果你的应用的某部分中包含有[WebView](http://developer.android.com/reference/android/webkit/WebView.html)，可以通过浏览器历史使用Back。要这么做，如果[WebView](http://developer.android.com/reference/android/webkit/WebView.html)有历史记录，你可以重写onBackPressed()并代理给[WebView](http://developer.android.com/reference/android/webkit/WebView.html):
+如果你的应用的一部分包含在[WebView](http://developer.android.com/reference/android/webkit/WebView.html)中，可以通过浏览器历史使用Back。要这么做，如果[WebView](http://developer.android.com/reference/android/webkit/WebView.html)有历史记录，你可以重写onBackPressed()并代理给[WebView](http://developer.android.com/reference/android/webkit/WebView.html):
 
 ```java
 @Override

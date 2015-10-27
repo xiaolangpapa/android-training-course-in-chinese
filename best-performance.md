@@ -2,30 +2,38 @@
 
 > 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/best-performance.html>
 
-These classes and articles help you build an app that's smooth, responsive, and uses as little battery as possible.
+下面的这些课程会介绍如何提升应用的性能，如何尽量减少电量的消耗。
 
-#### [Managing Your App's Memory](performance/memory.html)
-How to keep your app's memory footprint small in order to improve performance on a variety of mobile devices.
+#### [管理应用的内存](performance/memory.html)
 
-#### [Performance Tips](performance/performance-tips.html)
-How to optimize your app's performance in various ways to improve its responsiveness and battery efficiency.
+如何减少内存的占用。
 
-#### [Improving Layout Performance](performance/improving-layouts/index.html)
-How to identify problems in your app's layout performance and improve the UI responsiveness.
+#### [代码性能优化建议](performance/performance-tips.html)
 
-#### [Optimizing Battery Life](performance/monitor-device-state/index.html)
-How to minimize the amount of power your app requires by adapting to current power conditions and performing power-hungry tasks at proper intervals.
+如何提高应用的响应性与电池的使用效率。
 
-#### [Sending Operations to Multiple Threads](performance/multi-threads/index.html)
-How to improve the performance and scalability of long-running operations by dispatching work to multiple threads.
+#### [提升Layout的性能](performance/improving-layouts/index.html)
 
-#### [Keeping Your App Responsive](performance/perf-anr/index.html)
-How to keep your app responsive to user interaction so the UI does not lock-up and display an "Application Not Responding" dialog.
+如何提升UI的性能。
 
-#### [JNI Tips](performance/perf-jni/index.html)
-How to efficiently use the Java Native Interface with the Android NDK.
+#### [优化电池寿命](performance/monitor-device-state/index.html)
+
+如何优化电量的消耗。
+
+#### [多线程操作](performance/multi-threads/index.html)
+
+如何通过多线程分拆任务来提高程序性能。
+
+#### [避免出现程序无响应ANR](performance/perf-anr/index.html)
+
+如何避免ANR。
+
+#### [JNI技巧](performance/perf-jni/index.html)
+
+如何高效的使用JNI。
 
 #### [SMP Primer for Android](performance/smp/index.html)
-Tips for coding Android apps on symmetric multiprocessor systems.
+
+优化多核处理器架构下的Android程序。
 
 

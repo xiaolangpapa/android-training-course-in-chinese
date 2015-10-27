@@ -1,6 +1,6 @@
 # 按需加载视图
 
-> 编写:[allenlsy](https://github.com/allenlsy) - 原文:
+> 编写:[allenlsy](https://github.com/allenlsy) - 原文:<http://developer.android.com/training/improving-layouts/loading-ondemand.html>
 
 有时你的 Layout 会用到不怎么重用的复杂视图。不管它是列表项 细节，进度显示器，或是撤销时的提示信息，你可以仅在需要的时候载入它们，提高 UI 渲染速度。
 
@@ -30,8 +30,8 @@
 View importPanel = ((ViewStub) findViewById(R.id.stub_import)).inflate();
 ```
 
-> 注意：`inflate()` 方法会在渲染完成后返回被 inflate 的视图，所以你不需要再调用 `findViewById()` 去查找这个元素，如果你需要和这个 Layout 交互的话。
+> **Notes**：`inflate()` 方法会在渲染完成后返回被 inflate 的视图，所以如果你需要和这个 Layout 交互的话， 你不需要再调用 `findViewById()` 去查找这个元素，。
 
-一旦 ViewStub 可见或是被 inflate 了，ViewStub 元素就不存在了。取而代之的是被 inflate 的 Layout，其 id 是 ViewStub 上的 `android:inflatedId` 属性。（ViewStub 的 `android:id` 属性仅在 ViewStub 可见以前可用）
+一旦 ViewStub 可见或是被 inflate 了，ViewStub 就不再继续存在View的层级机构中了。取而代之的是被 inflate 的 Layout，其 id 是 ViewStub 上的 `android:inflatedId` 属性。（ViewStub 的 `android:id` 属性仅在 ViewStub 可见以前可用）
 
-> 注意：ViewStub 的一个缺陷是，它目前不支持使用 `<merge/>` 标签的 Layout 。
+> **Notes**：ViewStub 的一个缺陷是，它目前不支持使用 `<merge/>` 标签的 Layout 。
